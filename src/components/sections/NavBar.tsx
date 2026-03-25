@@ -1,9 +1,18 @@
 import Image from "next/image";
 import logo from "../../assets/skillbridge_logo.png";
+import Link from "next/link";
+import { Button } from "../ui/button";
+import { navLinks } from "@/types";
 
 const NavBar = () => {
+  const links: navLinks[] = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Contact", href: "/contact" },
+  ];
   return (
-    <div>
+    <div className="flex items-center justify-between">
       {/* logo */}
       <div className="flex items-center">
         <Image
@@ -20,8 +29,23 @@ const NavBar = () => {
           </h1>
         </div>
       </div>
-      {/* links */}
-      <div></div>
+      <div className="flex items-center gap-5">
+        {/* links */}
+        <div>
+          <ul className="flex items-center gap-5">
+            {links.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href}>{link.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {/* button */}
+        <div className="space-x-2">
+          <Button variant={"outline"}>Register</Button>
+          <Button>Login</Button>
+        </div>
+      </div>
     </div>
   );
 };
