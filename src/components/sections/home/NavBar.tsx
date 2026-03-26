@@ -1,8 +1,7 @@
-import Image from "next/image";
-import logo from "@/assets/skillbridge_logo.png";
 import Link from "next/link";
 import { Button } from "../../ui/button";
 import { navLinks } from "@/types";
+import Logo from "@/components/shared/Logo";
 
 const NavBar = () => {
   const links: navLinks[] = [
@@ -14,21 +13,7 @@ const NavBar = () => {
   return (
     <div className="flex items-center justify-between border-b ">
       {/* logo */}
-      <div className="flex items-center cursor-pointer">
-        <Image
-          src={logo}
-          alt="site-logo"
-          height={100}
-          width={100}
-          loading="eager"
-        />
-        <div>
-          <h1 className="font-bold text-2xl text-shadow-2xs">
-            {" "}
-            <span className="text-sky-700">Skill</span> Bridge
-          </h1>
-        </div>
-      </div>
+      <Logo></Logo>
       <div className="flex items-center gap-5">
         {/* links */}
         <div>

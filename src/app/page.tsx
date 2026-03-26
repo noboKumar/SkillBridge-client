@@ -9,6 +9,7 @@ import {
   PLACEHOLDER_TUTORS,
 } from "@/assets/placeholderData";
 import StudentReviews from "@/components/sections/home/StudentsReviews";
+import Footer from "@/components/sections/home/Footer";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <HowItWorks></HowItWorks>
       <ExploreCategories categories={CATEGORIES}></ExploreCategories>
       <StudentReviews reviews={PLACEHOLDER_REVIEWS}></StudentReviews>
+      <Footer></Footer>
     </>
   );
 }
