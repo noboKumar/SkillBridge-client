@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "../../ui/button";
+import { Button } from "../ui/button";
 import { navLinks } from "@/types";
 import Logo from "@/components/shared/Logo";
 
@@ -27,8 +27,12 @@ const NavBar = () => {
         </div>
         {/* button */}
         <div className="space-x-2">
-          <Button variant={"outline"}>Register</Button>
-          <Button>Login</Button>
+          <Button variant={"outline"}>
+            <Link href={"/registration"}>Register</Link>
+          </Button>
+          <Button>
+            <Link href={"/login"}>Login</Link>
+          </Button>
         </div>
       </div>
     </div>
