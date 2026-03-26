@@ -1,7 +1,7 @@
 import Image from "next/image";
-import logo from "../../assets/skillbridge_logo.png";
+import logo from "@/assets/skillbridge_logo.png";
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { navLinks } from "@/types";
 
 const NavBar = () => {

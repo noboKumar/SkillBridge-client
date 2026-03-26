@@ -1,5 +1,5 @@
-import HeroSearchBar from "../shared/HeroSearchBar";
-import { Button } from "../ui/button";
+import HeroSearchBar from "../../shared/HeroSearchBar";
+import { Button } from "../../ui/button";
 
 const Hero = () => {
   return (
