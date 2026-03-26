@@ -12,9 +12,9 @@ const NavBar = () => {
     { label: "Contact", href: "/contact" },
   ];
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between border-b ">
       {/* logo */}
-      <div className="flex items-center">
+      <div className="flex items-center cursor-pointer">
         <Image
           src={logo}
           alt="site-logo"
@@ -34,7 +34,7 @@ const NavBar = () => {
         <div>
           <ul className="flex items-center gap-5">
             {links.map((link) => (
-              <li key={link.href}>
+              <li className="hover:underline" key={link.href}>
                 <Link href={link.href}>{link.label}</Link>
               </li>
             ))}
