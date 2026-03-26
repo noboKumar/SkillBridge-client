@@ -1,7 +1,7 @@
 import { Tutor, Review, Category } from "@/types";
 
 // ─── Placeholder Tutors (replace with API fetch) ──────────────────────────────
-const PLACEHOLDER_TUTORS: Tutor[] = [
+export const PLACEHOLDER_TUTORS: Tutor[] = [
   {
     id: "1",
     name: "Sarah Miller",
@@ -53,6 +53,14 @@ export const PLACEHOLDER_REVIEWS: Review[] = [
     rating: 5,
     content: "Great experience! The tutors are knowledgeable and friendly.",
   },
+  {
+    id: "3",
+    authorName: "Alex R.",
+    avatarUrl: "https://randomuser.me/api/portraits/men/12.jpg",
+    rating: 5,
+    content:
+      "Amazing tutors! I improved my grades significantly. Highly recommend!",
+  },
 ];
 
 // ─── Static Category Data ──────────────────────────────────────────────────────
@@ -62,5 +70,3 @@ export const CATEGORIES: Category[] = [
   { id: "english", name: "English", icon: "book-open" },
   { id: "science", name: "Science", icon: "microscope" },
 ];
-
-export default PLACEHOLDER_TUTORS;

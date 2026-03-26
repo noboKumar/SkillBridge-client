@@ -1,10 +1,14 @@
 import Hero from "@/components/sections/Hero";
 import NavBar from "../components/sections/NavBar";
 import FeaturedTutors from "@/components/sections/FeaturedTutor";
-import PLACEHOLDER_TUTORS from "@/assets/placeholderData";
 import HowItWorks from "@/components/sections/HowItWorks";
 import ExploreCategories from "@/components/sections/ExploreCategories";
-import { CATEGORIES } from "@/assets/placeholderData";
+import {
+  CATEGORIES,
+  PLACEHOLDER_REVIEWS,
+  PLACEHOLDER_TUTORS,
+} from "@/assets/placeholderData";
+import StudentReviews from "@/components/sections/StudentsReviews";
 
 export default function Home() {
   return (
@@ -14,6 +18,7 @@ export default function Home() {
       <FeaturedTutors tutors={PLACEHOLDER_TUTORS}></FeaturedTutors>
       <HowItWorks></HowItWorks>
       <ExploreCategories categories={CATEGORIES}></ExploreCategories>
+      <StudentReviews reviews={PLACEHOLDER_REVIEWS}></StudentReviews>
     </>
   );
 }
