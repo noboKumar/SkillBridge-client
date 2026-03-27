@@ -6,7 +6,7 @@ export const metadata = {
   description: "Sign in to your SkillBridge account.",
 };
 
-export default function LoginPage() {
+export default function page() {
   return (
     <div className="min-h-screen bg-sky-50 flex items-center justify-center p-4">
       <div className="w-full max-w-4xl bg-white rounded-3xl shadow-xl shadow-sky-100 overflow-hidden flex flex-col md:flex-row">

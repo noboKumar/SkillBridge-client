@@ -28,7 +28,7 @@ const NavBar = () => {
         {/* button */}
         <div className="space-x-2">
           <Button variant={"outline"}>
-            <Link href={"/registration"}>Register</Link>
+            <Link href={"/register"}>Register</Link>
           </Button>
           <Button>
             <Link href={"/login"}>Login</Link>
