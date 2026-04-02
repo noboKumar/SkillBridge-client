@@ -7,9 +7,10 @@ const Logo = () => {
       <Image
         src={logo}
         alt="site-logo"
-        height={100}
-        width={100}
+        height={80}
+        width={80}
         loading="eager"
+        className="w-auto h-auto"
       />
       <div>
         <h1 className="font-bold text-2xl text-shadow-2xs">
