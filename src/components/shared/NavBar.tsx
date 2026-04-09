@@ -6,9 +6,8 @@ import UserAvatar from "./UserAvatar";
 const NavBar = () => {
   const links: navLinks[] = [
     { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Services", href: "/services" },
-    { label: "Contact", href: "/contact" },
+    { label: "Tutors", href: "/tutors" },
+    { label: "Dashboard", href: "/dashboard" },
   ];
 
   return (

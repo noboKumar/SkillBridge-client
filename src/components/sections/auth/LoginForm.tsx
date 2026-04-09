@@ -20,6 +20,7 @@ export default function LoginForm() {
         email,
         password,
       });
+      
       console.log(
         "User logged in",
         JSON.stringify(res.data.data.user),
