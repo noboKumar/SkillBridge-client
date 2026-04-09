@@ -29,6 +29,7 @@ export default function LoginForm() {
 
       localStorage.setItem("token", res.data.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.data.user));
+      window.location.href = "/";
 
       return res.data;
     } catch (error: unknown) {
