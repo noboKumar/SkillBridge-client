@@ -21,14 +21,20 @@ export default function TutorCard({ tutor }: TutorCardProps) {
 
       {/* Info */}
       <div className="p-4">
-        <p className="font-semibold text-slate-900 text-base leading-tight">{tutor.name}</p>
+        <p className="font-semibold text-slate-900 text-base leading-tight">
+          {tutor.name}
+        </p>
         <div className="mt-1.5 flex items-center gap-1.5 text-sm text-slate-500">
           <span>{tutor.subject}</span>
           <span className="text-slate-300">·</span>
           <Star size={13} className="text-amber-400 fill-amber-400" />
-          <span className="font-medium text-slate-700">{tutor.rating.toFixed(1)}</span>
+          <span className="font-medium text-slate-700">
+            {tutor.rating.toFixed(1)}
+          </span>
           <span className="text-slate-300">·</span>
-          <span className="font-medium text-blue-600">${tutor.hourlyRate}/hr</span>
+          <span className="font-medium text-blue-600">
+            ${tutor.hourlyRate}/hr
+          </span>
         </div>
       </div>
     </div>

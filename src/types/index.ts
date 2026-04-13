@@ -26,10 +26,14 @@ export interface Category {
   icon: string;
 }
 
-export interface registerPayload {
+export interface RegisterPayload {
   name: string;
   email: string;
   password: string;
   profilePhoto: string;
 }
+
+// export interface TeachersType {
+  
+// }
  

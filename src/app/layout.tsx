@@ -35,7 +35,7 @@ export default function RootLayout({
         <QueryProvider>
           <Toaster position="top-center"></Toaster>
           <NavBar></NavBar>
-          {children}
+          <div className="min-h-screen py-2">{children}</div>
         </QueryProvider>
         <Footer></Footer>
       </body>

@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { axiosInstance } from "@/lib/axios";
-import { registerPayload } from "@/types";
+import { RegisterPayload } from "@/types";
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -49,7 +49,7 @@ export default function RegisterForm() {
       imageUrl = data.data.url;
     }
 
-    const payload: registerPayload = {
+    const payload: RegisterPayload = {
       name,
       email,
       password,
