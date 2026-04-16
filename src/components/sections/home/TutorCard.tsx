@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Star, Award, Flame } from "lucide-react";
 import { Tutor } from "@/types";
+import Link from "next/link";
 
 interface TutorCardProps {
   tutor: Tutor;
@@ -100,12 +101,14 @@ export default function TutorCard({ tutor }: TutorCardProps) {
 
         {/* CTA Button */}
         <div className="px-5 pb-5 pt-0">
-          <button
-            className="w-full bg-linear-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-semibold py-2.5 rounded-xl transition-all duration-300 transform group-hover:shadow-lg active:scale-95 cursor-pointer"
-            aria-label={`View ${tutor?.user?.name}'s profile`}
-          >
-            View Profile
-          </button>
+          <Link href={`/tutors/${tutor?.id}`}>
+            <button
+              className="w-full bg-linear-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-semibold py-2.5 rounded-xl transition-all duration-300 transform group-hover:shadow-lg active:scale-95 cursor-pointer"
+              aria-label={`View ${tutor?.user?.name}'s profile`}
+            >
+              View Profile
+            </button>
+          </Link>
         </div>
 
         {/* Animated Border Glow on Hover */}
