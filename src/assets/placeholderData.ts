@@ -62,11 +62,3 @@ export const PLACEHOLDER_REVIEWS: Review[] = [
       "Amazing tutors! I improved my grades significantly. Highly recommend!",
   },
 ];
-
-// ─── Static Category Data ──────────────────────────────────────────────────────
-export const CATEGORIES: Category[] = [
-  { id: "math", name: "Math", icon: "calculator" },
-  { id: "programming", name: "Programming", icon: "code" },
-  { id: "english", name: "English", icon: "book-open" },
-  { id: "science", name: "Science", icon: "microscope" },
-];
