@@ -5,13 +5,31 @@ export type navLinks = {
 
 export interface Tutor {
   id: string;
-  name: string;
-  subject: string;
-  rating: number;
+  bio: string;
+  categoryId: string;
   hourlyRate: number;
-  imageUrl: string;
+  experienceYears: number;
+  ratingAverage: number;
+  totalReview: number;
+  createdAt: string;
+  updatedAt: string;
+
+  userId: string;
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    profilePhoto: string;
+    role: string;
+  };
+
+  category: {
+    id: string;
+    name: string;
+    description: string;
+  } | null;
 }
- 
+
 export interface Review {
   id: string;
   authorName: string;
@@ -19,7 +37,7 @@ export interface Review {
   rating: number;
   content: string;
 }
- 
+
 export interface Category {
   id: string;
   name: string;
@@ -32,8 +50,3 @@ export interface RegisterPayload {
   password: string;
   profilePhoto: string;
 }
-
-// export interface TeachersType {
-  
-// }
- 
