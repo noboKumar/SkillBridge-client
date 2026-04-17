@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { Star, Award, BookOpen, Clock } from "lucide-react";
+import { Star, Award, BookOpen, Clock, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 export default async function TutorPage({
   params,
@@ -8,10 +9,9 @@ export default async function TutorPage({
 }) {
   const { id } = await params;
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/tutors/${id}`,
-    { cache: "no-store" }
-  );
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tutors/${id}`, {
+    cache: "no-store",
+  });
 
   const data = await res.json();
   const tutor = data?.data;
@@ -25,15 +25,20 @@ export default async function TutorPage({
   }
 
   const name =
-    tutor?.user?.name?.charAt(0).toUpperCase() +
-    tutor?.user?.name?.slice(1);
+    tutor?.user?.name?.charAt(0).toUpperCase() + tutor?.user?.name?.slice(1);
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 border-4 rounded-xl">
       {/* HERO SECTION */}
-      <div className="relative border-4 rounded-t-lg">
+      <div className="relative border">
+        <Link
+          href="/tutors"
+          className="flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 mb-4 px-5 py-2"
+        >
+          <ArrowLeft size={18} />
+          <span className="font-bold">Back</span>
+        </Link>
         <div className="max-w-5xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center gap-8">
-          
           {/* Image */}
           <div className="relative w-40 h-40 md:w-52 md:h-52 rounded-3xl overflow-hidden border-4 border-white shadow-xl">
             <Image
@@ -46,42 +51,29 @@ export default async function TutorPage({
 
           {/* Info */}
           <div className="flex-1">
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">
-              {name}
-            </h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-2">{name}</h1>
 
-            <p className="mb-4">
-              {tutor?.category?.name}
-            </p>
+            <p className="mb-4">{tutor?.category?.name}</p>
 
             {/* Stats */}
             <div className="flex flex-wrap gap-6 text-sm">
-              
               {/* Rating */}
               <div className="flex items-center gap-2">
                 <Star className="fill-yellow-400 text-yellow-400" />
-                <span className="font-semibold">
-                  {tutor.ratingAverage}
-                </span>
-                <span>
-                  ({tutor.totalReview} reviews)
-                </span>
+                <span className="font-semibold">{tutor.ratingAverage}</span>
+                <span>({tutor.totalReview} reviews)</span>
               </div>
 
               {/* Experience */}
               <div className="flex items-center gap-2">
                 <Award />
-                <span>
-                  {tutor.experienceYears} years experience
-                </span>
+                <span>{tutor.experienceYears} years experience</span>
               </div>
 
               {/* Rate */}
               <div className="flex items-center gap-2">
                 <Clock />
-                <span className="font-semibold">
-                  ${tutor.hourlyRate}/hour
-                </span>
+                <span className="font-semibold">${tutor.hourlyRate}/hour</span>
               </div>
             </div>
           </div>
@@ -90,16 +82,13 @@ export default async function TutorPage({
 
       {/* BODY */}
       <div className="max-w-5xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-6">
-
         {/* LEFT SIDE */}
         <div className="md:col-span-2 space-y-6">
-
           {/* About */}
           <div className="bg-white p-6 rounded-2xl shadow-sm">
             <h2 className="text-xl font-bold mb-3">About</h2>
             <p className="text-slate-600 leading-relaxed">
-              {tutor?.bio ||
-                "This tutor has not added a bio yet."}
+              {tutor?.bio || "This tutor has not added a bio yet."}
             </p>
           </div>
 
@@ -114,12 +103,9 @@ export default async function TutorPage({
 
         {/* RIGHT SIDE */}
         <div className="space-y-6">
-
           {/* Pricing Card */}
           <div className="bg-white p-6 rounded-2xl shadow-sm text-center">
-            <h2 className="text-lg font-bold mb-2">
-              Hourly Rate
-            </h2>
+            <h2 className="text-lg font-bold mb-2">Hourly Rate</h2>
             <p className="text-3xl font-black text-slate-900">
               ${tutor.hourlyRate}
             </p>
@@ -136,16 +122,12 @@ export default async function TutorPage({
 
             <div className="flex items-center gap-2 text-slate-600">
               <BookOpen size={16} />
-              <span>
-                {tutor.totalReview || 0} total reviews
-              </span>
+              <span>{tutor.totalReview || 0} total reviews</span>
             </div>
 
             <div className="flex items-center gap-2 text-slate-600">
               <Award size={16} />
-              <span>
-                {tutor.experienceYears} years teaching
-              </span>
+              <span>{tutor.experienceYears} years teaching</span>
             </div>
           </div>
         </div>
