@@ -13,14 +13,14 @@ const UserAvatar = () => {
       {/* Profile Photo / Fallback Icon */}
       {user ? (
         <>
-          <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-200 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-200 flex items-center justify-center ring-2 ring-gray-500">
             {user.profilePhoto ? (
               <Image
                 src={user.profilePhoto}
                 alt={user.name}
                 width={100}
                 height={100}
-                className="object-cover"
+                className="w-full h-full object-cover "
               />
             ) : (
               <User size={20} className="text-slate-500" />
