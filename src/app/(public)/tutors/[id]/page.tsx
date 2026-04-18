@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { Star, Award, BookOpen, Clock, ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import { Star, Award, BookOpen, Clock } from "lucide-react";
+import BackBtn from "@/components/shared/BackBtn";
 
 export default async function TutorPage({
   params,
@@ -31,13 +31,7 @@ export default async function TutorPage({
     <div className="min-h-screen bg-slate-50 border-4 rounded-xl">
       {/* HERO SECTION */}
       <div className="relative border">
-        <Link
-          href="/tutors"
-          className="flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 mb-4 px-5 py-2"
-        >
-          <ArrowLeft size={18} />
-          <span className="font-bold">Back</span>
-        </Link>
+        <BackBtn></BackBtn>
         <div className="max-w-5xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center gap-8">
           {/* Image */}
           <div className="relative w-40 h-40 md:w-52 md:h-52 rounded-3xl overflow-hidden border-4 border-white shadow-xl">
