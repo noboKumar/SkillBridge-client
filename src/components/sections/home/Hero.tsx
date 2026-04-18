@@ -1,3 +1,4 @@
+import Link from "next/link";
 import HeroSearchBar from "../../shared/HeroSearchBar";
 import { Button } from "../../ui/button";
 
@@ -14,10 +15,14 @@ const Hero = () => {
       </div>
       <HeroSearchBar />
       <div className="py-5 flex gap-5">
-        <Button className="px-10 py-5 shadow-xl">Find Tutors</Button>
-        <Button className="px-10 py-5 shadow-xl" variant={"outline"}>
-          Become a Tutor
-        </Button>
+        <Link href="/tutors">
+          <Button className="px-10 py-5 shadow-xl">Find a Tutor</Button>
+        </Link>
+        <Link href={"howItWorks"}>
+          <Button className="px-10 py-5 shadow-xl" variant={"outline"}>
+            How it Works
+          </Button>
+        </Link>
       </div>
     </div>
   );

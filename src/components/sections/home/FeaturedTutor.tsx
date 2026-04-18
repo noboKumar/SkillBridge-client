@@ -1,19 +1,22 @@
 import { Tutor } from "@/types";
 import TutorCard from "./TutorCard";
 
-interface FeaturedTutorsProps {
-  /**
-   * Pass tutors fetched from your backend.
-   * Falls back to an empty array; in production,
-   * fetch from your API route (e.g. /api/tutors?featured=true).
-   */
-  tutors: Tutor[];
-}
+const getTutors = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tutors/featured`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch featured tutors");
+  }
 
-export default function FeaturedTutors({ tutors }: FeaturedTutorsProps) {
+  const data = await res.json();
+  return data?.data || [];
+};
+
+export default async function FeaturedTutors() {
+  const tutors = await getTutors();
+
   return (
     <section className="px-6">
-      <div className="">
+      <div>
         {/* Header */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
@@ -27,7 +30,7 @@ export default function FeaturedTutors({ tutors }: FeaturedTutorsProps) {
         {/* Grid */}
         {tutors.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
-            {tutors.map((tutor) => (
+            {tutors.map((tutor: Tutor) => (
               <TutorCard key={tutor.id} tutor={tutor} />
             ))}
           </div>

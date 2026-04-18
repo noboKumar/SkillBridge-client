@@ -9,7 +9,6 @@ import {
 } from "lucide-react";
 import { Category } from "@/types";
 
-
 function getCategoryIcon(name: string) {
   const lower = name.toLowerCase();
 
