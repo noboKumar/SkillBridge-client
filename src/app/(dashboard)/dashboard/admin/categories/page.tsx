@@ -70,7 +70,15 @@ export default function AdminCategoriesPage() {
         <h2 className="text-xl font-bold text-slate-800 mb-4 border-b pb-4">All Categories</h2>
         
         {isLoading ? (
-          <div className="text-center py-10">Loading...</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="p-4 border rounded-xl hover:shadow-md transition-shadow">
+                <div className="h-6 bg-slate-200 rounded animate-pulse w-3/4 mb-3"></div>
+                <div className="h-4 bg-slate-200 rounded animate-pulse w-full mb-2"></div>
+                <div className="h-4 bg-slate-200 rounded animate-pulse w-5/6"></div>
+              </div>
+            ))}
+          </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {categories.map((cat) => (

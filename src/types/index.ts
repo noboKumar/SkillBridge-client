@@ -30,6 +30,14 @@ export interface Tutor {
   } | null;
 }
 
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  profilePhoto: string;
+  role: string;
+}
+
 export interface Review {
   id: string;
   authorName: string;

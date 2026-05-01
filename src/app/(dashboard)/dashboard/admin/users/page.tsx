@@ -3,7 +3,7 @@
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { axiosInstance } from "@/lib/axios";
-import { Shield, Ban, CheckCircle } from "lucide-react";
+import { Ban, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
 import { User } from "@/types";
 
@@ -50,7 +50,30 @@ export default function AdminUsersPage() {
       </div>
 
       {isLoading ? (
-        <div className="text-center py-10">Loading users...</div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm text-slate-600">
+            <thead className="bg-slate-50 border-b">
+              <tr>
+                {["Name", "Email", "Role", "Status", "Actions"].map((i) => (
+                  <th key={i} className="px-4 py-3">
+                    <div className="h-4 bg-slate-200 rounded animate-pulse w-20"></div>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[1, 2, 3, 4, 5].map((i) => (
+                <tr key={i} className="border-b">
+                  <td className="px-4 py-4"><div className="h-4 bg-slate-200 rounded animate-pulse w-32"></div></td>
+                  <td className="px-4 py-4"><div className="h-4 bg-slate-200 rounded animate-pulse w-40"></div></td>
+                  <td className="px-4 py-4"><div className="h-6 bg-slate-200 rounded animate-pulse w-16"></div></td>
+                  <td className="px-4 py-4"><div className="h-6 bg-slate-200 rounded animate-pulse w-16"></div></td>
+                  <td className="px-4 py-4 text-right"><div className="h-8 bg-slate-200 rounded-md animate-pulse w-20 ml-auto"></div></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm text-slate-600">

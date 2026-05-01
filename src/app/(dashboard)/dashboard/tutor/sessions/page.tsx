@@ -62,7 +62,36 @@ export default function TutorSessionsPage() {
       </div>
 
       {isLoading ? (
-        <div className="text-center py-10 text-slate-400">Loading sessions...</div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm text-slate-600">
+            <thead className="bg-slate-50 border-b">
+              <tr>
+                {["Student", "Date", "Time", "Price", "Status", "Actions"].map((i) => (
+                  <th key={i} className="px-4 py-3">
+                    <div className="h-4 bg-slate-200 rounded animate-pulse w-20"></div>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[1, 2, 3].map((i) => (
+                <tr key={i} className="border-b">
+                  <td className="px-4 py-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-slate-200 animate-pulse"></div>
+                      <div className="h-4 bg-slate-200 rounded animate-pulse w-24"></div>
+                    </div>
+                  </td>
+                  <td className="px-4 py-4"><div className="h-4 bg-slate-200 rounded animate-pulse w-24"></div></td>
+                  <td className="px-4 py-4"><div className="h-4 bg-slate-200 rounded animate-pulse w-32"></div></td>
+                  <td className="px-4 py-4"><div className="h-4 bg-slate-200 rounded animate-pulse w-12"></div></td>
+                  <td className="px-4 py-4"><div className="h-6 bg-slate-200 rounded-full animate-pulse w-24"></div></td>
+                  <td className="px-4 py-4 text-right"><div className="h-8 bg-slate-200 rounded-md animate-pulse w-20 ml-auto"></div></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm text-slate-600">

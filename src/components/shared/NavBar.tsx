@@ -5,16 +5,22 @@ import { usePathname } from "next/navigation";
 import { navLinks } from "@/types";
 import Logo from "@/components/shared/Logo";
 import UserAvatar from "./UserAvatar";
+import { useAuth } from "@/hooks/useAuth";
 
 const NavBar = () => {
   const pathname = usePathname();
+
+  const { user } = useAuth();
 
   const links: navLinks[] = [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Tutors", href: "/tutors" },
-    { label: "Dashboard", href: "/dashboard" },
   ];
+
+  if (user) {
+    links.push({ label: "Dashboard", href: "/dashboard" });
+  }
 
   return (
     <div className="flex items-center justify-between border-b sticky top-0 z-40 backdrop-blur-md bg-background/80">

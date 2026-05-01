@@ -6,8 +6,31 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import LogoutButton from "./LogoutButton";
 
+import { useEffect, useState } from "react";
+
 const UserAvatar = () => {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const hasToken = typeof window !== "undefined" && !!localStorage.getItem("token");
+  const isAuthLoading = !mounted || (hasToken && isLoading);
+
+  if (isAuthLoading) {
+    return (
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 rounded-full bg-slate-200 animate-pulse"></div>
+        <div className="flex flex-col gap-2">
+          <div className="w-24 h-4 bg-slate-200 animate-pulse rounded"></div>
+          <div className="w-16 h-3 bg-slate-200 animate-pulse rounded"></div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex items-center gap-3">
       {/* Profile Photo / Fallback Icon */}
