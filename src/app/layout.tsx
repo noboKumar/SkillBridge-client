@@ -37,10 +37,8 @@ export default function RootLayout({
       <body className="w-11/12 mx-auto">
         <QueryProvider>
           <Toaster position="top-center"></Toaster>
-          <NavBar></NavBar>
-          <div className="min-h-screen py-2">{children}</div>
+          {children}
         </QueryProvider>
-        <Footer></Footer>
       </body>
     </html>
   );

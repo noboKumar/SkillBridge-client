@@ -1,73 +1,72 @@
-import {
-  Search,
-  CalendarCheck,
-  GraduationCap,
-  ChevronRight,
-} from "lucide-react";
+import { Search, CalendarCheck, GraduationCap, ArrowRight } from "lucide-react";
 
 const STEPS = [
   {
     icon: Search,
-    number: "1",
+    number: "01",
     title: "Browse",
-    description: "Find the right tutor for your needs.",
+    description: "Find the right tutor by subject, rating, or availability.",
   },
   {
     icon: CalendarCheck,
-    number: "2",
+    number: "02",
     title: "Book",
-    description: "Schedule your session easily online.",
+    description: "Schedule your session in seconds — flexible times that fit your day.",
   },
   {
     icon: GraduationCap,
-    number: "3",
+    number: "03",
     title: "Learn",
-    description: "Improve your skills with expert guidance.",
+    description: "Improve your skills with personalized, expert-led guidance.",
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section className="py-14 px-6">
-      <div>
-        <div className="mb-8 space-y-5">
-          <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
-            How It Works
-          </h2>
-          <div className="border"></div>
-        </div>
+    <section className="py-8 px-6">
+      {/* Header with inline rule */}
+      <div className="flex items-center gap-4 mb-6">
+        <h2 className="text-lg font-semibold text-slate-900 whitespace-nowrap">
+          How it works
+        </h2>
+        <div className="flex-1 h-px bg-slate-200" />
+      </div>
 
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          {STEPS.map((step, index) => (
-            <div key={step.number} className="flex items-center gap-4 flex-1">
-              {/* Step card */}
-              <div className="flex items-start gap-4 bg-white rounded-2xl border border-slate-100 shadow-sm px-5 py-4 flex-1">
-                {/* Icon */}
-                <div className="shrink-0 w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
-                  <step.icon size={20} />
+      {/* Steps */}
+      <div className="flex flex-col sm:flex-row items-stretch gap-3">
+        {STEPS.map((step, index) => (
+          <>
+            <div
+              key={step.number}
+              className="flex-1 bg-white border border-slate-100 rounded-2xl p-5 flex flex-col gap-4 hover:border-slate-200 transition-colors"
+            >
+              {/* Top row: icon + step number */}
+              <div className="flex items-center justify-between">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center">
+                  <step.icon size={18} className="text-blue-600" strokeWidth={2} />
                 </div>
-
-                {/* Text */}
-                <div>
-                  <p className="font-semibold text-slate-900">
-                    {step.number}. {step.title}
-                  </p>
-                  <p className="text-slate-500 mt-0.5 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+                <span className="text-xs font-medium text-slate-400 tracking-wide">
+                  Step {step.number}
+                </span>
               </div>
 
-              {/* Connector arrow */}
-              {index < STEPS.length - 1 && (
-                <ChevronRight
-                  size={18}
-                  className="text-slate-300 shrink-0 hidden sm:block"
-                />
-              )}
+              {/* Text */}
+              <div>
+                <p className="font-semibold text-slate-900 mb-1">{step.title}</p>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
             </div>
-          ))}
-        </div>
+
+            {/* Arrow connector */}
+            {index < STEPS.length - 1 && (
+              <div className="hidden sm:flex items-center text-slate-300 flex-shrink-0">
+                <ArrowRight size={16} />
+              </div>
+            )}
+          </>
+        ))}
       </div>
     </section>
   );

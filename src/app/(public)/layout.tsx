@@ -1,0 +1,16 @@
+import NavBar from "@/components/shared/NavBar";
+import Footer from "@/components/shared/Footer";
+
+export default function PublicLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <>
+      <NavBar />
+      <div className="min-h-screen py-2">{children}</div>
+      <Footer />
+    </>
+  );
+}
