@@ -12,7 +12,7 @@ export default function BookingCard({ tutor }: { tutor: any }) {
   const { user } = useAuth();
   const router = useRouter();
 
-  const slots = tutor?.availabilitySlots || [];
+  const slots = (tutor?.availabilitySlots || []).filter((slot: any) => !slot.isBooked);
 
   const handleBookSession = async () => {
     if (!user) {

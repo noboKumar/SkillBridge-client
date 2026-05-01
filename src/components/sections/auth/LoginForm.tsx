@@ -6,6 +6,15 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { axiosInstance } from "@/lib/axios";
 import { toast } from "sonner";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 const DEMO_ACCOUNTS = [
   {
@@ -36,6 +45,7 @@ export default function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [suspendedModalOpen, setSuspendedModalOpen] = useState(false);
 
   async function loginWithCredentials(emailVal: string, passwordVal: string) {
     setLoading(true);
@@ -59,7 +69,12 @@ export default function LoginForm() {
     } catch (error: any) {
       const message =
         error.response?.data?.message || error.message || "Invalid email or password.";
-      toast.error("Login failed", { description: message });
+      
+      if (message.toLowerCase().includes("suspended")) {
+        setSuspendedModalOpen(true);
+      } else {
+        toast.error("Login failed", { description: message });
+      }
     } finally {
       setLoading(false);
     }
@@ -171,6 +186,30 @@ export default function LoginForm() {
           </Link>
         </p>
       </form>
+
+      {/* Suspended User Modal */}
+      <AlertDialog open={suspendedModalOpen} onOpenChange={setSuspendedModalOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-red-600 flex items-center gap-2">
+              Account Suspended
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-slate-600">
+              Your account has been suspended by the administrator. You cannot log in or access the platform at this time.
+              <br /><br />
+              If you believe this is a mistake, please contact support.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction
+              onClick={() => setSuspendedModalOpen(false)}
+              className="bg-slate-900 hover:bg-slate-800 text-white"
+            >
+              Close
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
