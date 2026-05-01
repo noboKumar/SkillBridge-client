@@ -4,11 +4,23 @@ import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { axiosInstance } from "@/lib/axios";
 import { toast } from "sonner";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 export default function StudentBookingsPage() {
   const { user } = useAuth();
   const [bookings, setBookings] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [cancelLoading, setCancelLoading] = useState<string | null>(null);
   
   // Review State
   const [reviewModalOpen, setReviewModalOpen] = useState(false);
@@ -52,6 +64,19 @@ export default function StudentBookingsPage() {
     }
   };
 
+  const handleCancelBooking = async (bookingId: string) => {
+    setCancelLoading(bookingId);
+    try {
+      await axiosInstance.patch(`/bookings/${bookingId}`, { status: "CANCELLED" });
+      toast.success("Session cancelled.");
+      fetchBookings();
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || "Failed to cancel booking");
+    } finally {
+      setCancelLoading(null);
+    }
+  };
+
   if (user?.role !== "STUDENT") return null;
 
   return (
@@ -90,9 +115,47 @@ export default function StudentBookingsPage() {
                       {b.status}
                     </span>
                   </td>
-                  <td className="px-4 py-4 text-right">
+                  <td className="px-4 py-4 text-right space-x-2">
+                    {/* CONFIRMED: student can cancel */}
+                    {b.status === 'CONFIRMED' ? (
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <button className="text-xs bg-red-500 hover:bg-red-600 text-white px-3 py-1.5 rounded-lg font-medium transition">
+                            Cancel
+                          </button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Cancel this session?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              You are about to cancel your session with{" "}
+                              <span className="font-semibold text-slate-800">{b.tutor?.user?.name}</span>.
+                              This action cannot be undone.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Keep Session</AlertDialogCancel>
+                            <AlertDialogAction
+                              onClick={() => handleCancelBooking(b.id)}
+                              disabled={cancelLoading === b.id}
+                              className="bg-red-500 hover:bg-red-600 text-white"
+                            >
+                              {cancelLoading === b.id ? "Cancelling..." : "Yes, Cancel"}
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    ) : (
+                      <button
+                        disabled
+                        className="text-xs bg-red-500 text-white px-3 py-1.5 rounded-lg font-medium opacity-40 cursor-not-allowed"
+                      >
+                        Cancel
+                      </button>
+                    )}
+                    {/* COMPLETED: student can leave a review once */}
                     {b.status === 'COMPLETED' && !b.reviews && (
-                      <button 
+                      <button
                         onClick={() => {
                           setSelectedBookingId(b.id);
                           setRating(5);
@@ -106,6 +169,9 @@ export default function StudentBookingsPage() {
                     )}
                     {b.reviews && (
                       <span className="text-xs text-slate-400">Reviewed ✓</span>
+                    )}
+                    {b.status === 'CANCELLED' && (
+                      <span className="text-xs text-red-400">Cancelled</span>
                     )}
                   </td>
                 </tr>

@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Search, CalendarCheck, GraduationCap, ArrowRight } from "lucide-react";
 
 const STEPS = [
@@ -35,9 +36,8 @@ export default function HowItWorks() {
       {/* Steps */}
       <div className="flex flex-col sm:flex-row items-stretch gap-3">
         {STEPS.map((step, index) => (
-          <>
+          <Fragment key={step.number}>
             <div
-              key={step.number}
               className="flex-1 bg-white border border-slate-100 rounded-2xl p-5 flex flex-col gap-4 hover:border-slate-200 transition-colors"
             >
               {/* Top row: icon + step number */}
@@ -65,7 +65,7 @@ export default function HowItWorks() {
                 <ArrowRight size={16} />
               </div>
             )}
-          </>
+          </Fragment>
         ))}
       </div>
     </section>
