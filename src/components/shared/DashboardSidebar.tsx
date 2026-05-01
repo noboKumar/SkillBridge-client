@@ -3,22 +3,40 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
-import { 
-  LayoutDashboard, 
-  BookOpen, 
-  User, 
-  Calendar, 
-  Users, 
+import { useQueryClient } from "@tanstack/react-query";
+import {
+  LayoutDashboard,
+  BookOpen,
+  User,
+  Calendar,
+  Users,
   Tags,
-  LogOut
+  LogOut,
 } from "lucide-react";
 import Logo from "./Logo";
-import { useLogout } from "@/hooks/useLogOut";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const DashboardSidebar = () => {
   const pathname = usePathname();
   const { user } = useAuth();
-  const logout = useLogout();
+  const queryClient = useQueryClient();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    queryClient.clear();
+    window.location.href = "/login";
+  };
 
   const getLinks = () => {
     if (!user) return [];
@@ -59,6 +77,21 @@ const DashboardSidebar = () => {
         </Link>
       </div>
 
+      {/* User info */}
+      {user && (
+        <div className="px-6 py-4 border-b bg-slate-50">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-sm shrink-0">
+              {user.name?.charAt(0).toUpperCase()}
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-semibold text-slate-800 truncate">{user.name}</p>
+              <p className="text-xs text-slate-400 truncate">{user.role}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="flex-1 py-6 px-4 space-y-2">
         {links.map((link) => {
           const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
@@ -81,13 +114,31 @@ const DashboardSidebar = () => {
       </div>
 
       <div className="p-4 border-t">
-        <button
-          onClick={() => logout()}
-          className="flex w-full items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-xl transition-colors font-medium"
-        >
-          <LogOut size={20} />
-          <span>Logout</span>
-        </button>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <button className="flex w-full items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-xl transition-colors font-medium">
+              <LogOut size={20} />
+              <span>Logout</span>
+            </button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Log out of SkillBridge?</AlertDialogTitle>
+              <AlertDialogDescription>
+                You will be signed out of your account and redirected to the login page.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Stay Logged In</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={handleLogout}
+                className="bg-red-600 hover:bg-red-700 text-white"
+              >
+                Yes, Log Out
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </div>
   );

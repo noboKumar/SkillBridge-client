@@ -167,12 +167,6 @@ export default function StudentBookingsPage() {
                         Leave Review
                       </button>
                     )}
-                    {b.reviews && (
-                      <span className="text-xs text-slate-400">Reviewed ✓</span>
-                    )}
-                    {b.status === 'CANCELLED' && (
-                      <span className="text-xs text-red-400">Cancelled</span>
-                    )}
                   </td>
                 </tr>
               ))}
