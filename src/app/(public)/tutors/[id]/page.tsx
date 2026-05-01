@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Star, Award, BookOpen, Clock } from "lucide-react";
 import BackBtn from "@/components/shared/BackBtn";
+import BookingCard from "@/components/shared/BookingCard";
 
 export default async function TutorPage({
   params,
@@ -97,18 +98,7 @@ export default async function TutorPage({
 
         {/* RIGHT SIDE */}
         <div className="space-y-6">
-          {/* Pricing Card */}
-          <div className="bg-white p-6 rounded-2xl shadow-sm text-center">
-            <h2 className="text-lg font-bold mb-2">Hourly Rate</h2>
-            <p className="text-3xl font-black text-slate-900">
-              ${tutor.hourlyRate}
-            </p>
-            <p className="text-slate-500">per hour</p>
-
-            <button className="mt-4 w-full bg-sky-600 hover:bg-sky-700 text-white py-2.5 rounded-xl font-semibold transition">
-              Book Session
-            </button>
-          </div>
+          <BookingCard tutor={tutor} />
 
           {/* Quick Info */}
           <div className="bg-white p-6 rounded-2xl shadow-sm space-y-3">
@@ -116,7 +106,7 @@ export default async function TutorPage({
 
             <div className="flex items-center gap-2 text-slate-600">
               <BookOpen size={16} />
-              <span>{tutor.totalReview || 0} total reviews</span>
+              <span>{tutor.reviews?.length || 0} total reviews</span>
             </div>
 
             <div className="flex items-center gap-2 text-slate-600">
@@ -125,6 +115,35 @@ export default async function TutorPage({
             </div>
           </div>
         </div>
+      </div>
+
+      {/* REVIEWS SECTION */}
+      <div className="max-w-5xl mx-auto px-6 py-10 border-t">
+        <h2 className="text-2xl font-bold mb-6">Student Reviews</h2>
+        {tutor.reviews && tutor.reviews.length > 0 ? (
+          <div className="grid md:grid-cols-2 gap-6">
+            {tutor.reviews.map((review: any) => (
+              <div key={review.id} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">
+                    {review.student?.name?.charAt(0).toUpperCase()}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-800">{review.student?.name}</h3>
+                    <div className="flex text-yellow-400 text-sm">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className={i < review.rating ? "fill-yellow-400" : "fill-slate-200 text-slate-200"} size={14} />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <p className="text-slate-600 italic">"{review.comment}"</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-slate-500">No reviews yet. Be the first to review this tutor after your session!</p>
+        )}
       </div>
     </div>
   );

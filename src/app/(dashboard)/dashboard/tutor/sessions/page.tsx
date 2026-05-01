@@ -48,6 +48,7 @@ export default function TutorSessionsPage() {
                 <th className="px-4 py-3">Time</th>
                 <th className="px-4 py-3">Price</th>
                 <th className="px-4 py-3">Status</th>
+                <th className="px-4 py-3 text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -69,11 +70,29 @@ export default function TutorSessionsPage() {
                       {b.status}
                     </span>
                   </td>
+                  <td className="px-4 py-4 text-right">
+                    {b.status === 'CONFIRMED' && (
+                      <button 
+                        onClick={async () => {
+                          try {
+                            await axiosInstance.patch(`/bookings/${b.id}`, { status: 'COMPLETED' });
+                            toast.success("Session marked as completed!");
+                            fetchBookings();
+                          } catch (err) {
+                            toast.error("Failed to update status");
+                          }
+                        }}
+                        className="text-xs bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg font-medium transition"
+                      >
+                        Mark Completed
+                      </button>
+                    )}
+                  </td>
                 </tr>
               ))}
               {bookings.length === 0 && (
                 <tr>
-                  <td colSpan={5} className="text-center py-10">You have no teaching sessions yet.</td>
+                  <td colSpan={6} className="text-center py-10">You have no teaching sessions yet.</td>
                 </tr>
               )}
             </tbody>

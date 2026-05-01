@@ -9,6 +9,13 @@ export default function StudentBookingsPage() {
   const { user } = useAuth();
   const [bookings, setBookings] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  
+  // Review State
+  const [reviewModalOpen, setReviewModalOpen] = useState(false);
+  const [selectedBookingId, setSelectedBookingId] = useState("");
+  const [rating, setRating] = useState(5);
+  const [comment, setComment] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const fetchBookings = async () => {
     try {
@@ -25,10 +32,30 @@ export default function StudentBookingsPage() {
     fetchBookings();
   }, []);
 
+  const handleSubmitReview = async () => {
+    if (!comment) return toast.error("Please add a comment");
+    
+    setIsSubmitting(true);
+    try {
+      await axiosInstance.post("/reviews", {
+        bookingId: selectedBookingId,
+        rating,
+        comment
+      });
+      toast.success("Review submitted successfully!");
+      setReviewModalOpen(false);
+      fetchBookings();
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || "Failed to submit review");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   if (user?.role !== "STUDENT") return null;
 
   return (
-    <div className="space-y-6 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 min-h-[70vh]">
+    <div className="space-y-6 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 min-h-[70vh] relative">
       <div className="flex justify-between items-center mb-6 border-b pb-4">
         <div>
           <h2 className="text-2xl font-bold text-slate-800">My Bookings</h2>
@@ -48,6 +75,7 @@ export default function StudentBookingsPage() {
                 <th className="px-4 py-3">Time</th>
                 <th className="px-4 py-3">Price</th>
                 <th className="px-4 py-3">Status</th>
+                <th className="px-4 py-3 text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -62,15 +90,78 @@ export default function StudentBookingsPage() {
                       {b.status}
                     </span>
                   </td>
+                  <td className="px-4 py-4 text-right">
+                    {b.status === 'COMPLETED' && !b.reviews && (
+                      <button 
+                        onClick={() => {
+                          setSelectedBookingId(b.id);
+                          setRating(5);
+                          setComment("");
+                          setReviewModalOpen(true);
+                        }}
+                        className="text-xs bg-sky-600 hover:bg-sky-700 text-white px-3 py-1.5 rounded-lg font-medium transition"
+                      >
+                        Leave Review
+                      </button>
+                    )}
+                    {b.reviews && (
+                      <span className="text-xs text-slate-400">Reviewed ✓</span>
+                    )}
+                  </td>
                 </tr>
               ))}
               {bookings.length === 0 && (
                 <tr>
-                  <td colSpan={5} className="text-center py-10">You haven't booked any sessions yet.</td>
+                  <td colSpan={6} className="text-center py-10">You haven't booked any sessions yet.</td>
                 </tr>
               )}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {/* Review Modal */}
+      {reviewModalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
+            <h3 className="text-xl font-bold mb-4 text-slate-800">Leave a Review</h3>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">Rating (1-5)</label>
+                <input 
+                  type="number" 
+                  min="1" max="5" 
+                  value={rating} 
+                  onChange={(e) => setRating(Number(e.target.value))}
+                  className="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-sky-600 focus:outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Comment</label>
+                <textarea 
+                  value={comment} 
+                  onChange={(e) => setComment(e.target.value)}
+                  placeholder="How was the session?"
+                  className="w-full min-h-[100px] border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-sky-600 focus:outline-none"
+                />
+              </div>
+              <div className="flex justify-end gap-2 mt-6">
+                <button 
+                  onClick={() => setReviewModalOpen(false)}
+                  className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg"
+                >
+                  Cancel
+                </button>
+                <button 
+                  onClick={handleSubmitReview}
+                  disabled={isSubmitting}
+                  className="px-4 py-2 text-sm font-medium bg-sky-600 text-white hover:bg-sky-700 rounded-lg disabled:opacity-50"
+                >
+                  {isSubmitting ? "Submitting..." : "Submit Review"}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

@@ -50,3 +50,60 @@ export interface RegisterPayload {
   password: string;
   profilePhoto: string;
 }
+
+export type userRole = "STUDENT" | "TUTOR" | "ADMIN";
+
+export interface AvailabilitySlot {
+  id: string;
+  tutorId: string;
+  daysOfWeek: string[];
+  startTime: string;
+  endTime: string;
+  isBooked: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Booking {
+  id: string;
+  studentId: string;
+  tutorId: string;
+  slotId: string;
+  price: number;
+  bookingDate: string;
+  status: bookingStatus;
+  paymentStatus: paymentStatus;
+  createdAt: string;
+  updatedAt: string;
+
+  student: {
+    id: string;
+    name: string;
+    email: string;
+    profilePhoto: string;
+  };
+
+  tutor: {
+    id: string;
+    user: {
+      id: string;
+      name: string;
+      email: string;
+      profilePhoto: string;
+    };
+    category: {
+      id: string;
+      name: string;
+    };
+  };
+
+  slot: {
+    id: string;
+    startTime: string;
+    endTime: string;
+  };
+}
+
+export type paymentStatus = "PENDING" | "SUCCESS" | "FAILED" | "REFUNDED";
+
+export type bookingStatus = "PENDING" | "CONFIRMED" | "COMPLETED" | "CANCELLED";
