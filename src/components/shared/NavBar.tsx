@@ -11,7 +11,7 @@ const NavBar = () => {
   ];
 
   return (
-    <div className="flex items-center justify-between border-b ">
+    <div className="flex items-center justify-between border-b sticky top-0 z-40 backdrop-blur-md bg-background/80">
       {/* logo */}
       <Link href="/">
         <Logo></Logo>
