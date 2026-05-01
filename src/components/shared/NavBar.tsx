@@ -1,9 +1,14 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { navLinks } from "@/types";
 import Logo from "@/components/shared/Logo";
 import UserAvatar from "./UserAvatar";
 
 const NavBar = () => {
+  const pathname = usePathname();
+
   const links: navLinks[] = [
     { label: "Home", href: "/" },
     { label: "Tutors", href: "/tutors" },
@@ -20,14 +25,25 @@ const NavBar = () => {
         {/* links */}  
         <div>
           <ul className="flex items-center gap-5">
-            {links.map((link) => (
-              <li
-                className="hover:underline font-medium text-gray-600"
-                key={link.href}
-              >
-                <Link href={link.href}>{link.label}</Link>
-              </li>
-            ))}
+            {links.map((link) => {
+              const isActive =
+                link.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(link.href);
+
+              return (
+                <li
+                  key={link.href}
+                  className={`font-medium transition-colors ${
+                    isActive
+                      ? "text-sky-600 font-bold"
+                      : "text-slate-600 hover:text-sky-600"
+                  }`}
+                >
+                  <Link href={link.href}>{link.label}</Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
         {/* button */}
