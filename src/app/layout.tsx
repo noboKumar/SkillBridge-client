@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: "SkillBridge",
   description: "SkillBridge App",
   icons: {
-    icon: "/skillbridge_logo.png",
+    icon: "/favicon.ico",
   },
 };
 
@@ -34,7 +34,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="">
+      <body>
         <QueryProvider>
           <Toaster position="top-center"></Toaster>
           {children}
