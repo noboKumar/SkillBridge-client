@@ -26,7 +26,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-const DashboardSidebar = () => {
+export const SidebarContent = ({ onLinkClick }: { onLinkClick?: () => void }) => {
   const pathname = usePathname();
   const { user } = useAuth();
   const queryClient = useQueryClient();
@@ -70,7 +70,7 @@ const DashboardSidebar = () => {
   const links = getLinks();
 
   return (
-    <div className="w-64 bg-white border-r min-h-screen flex flex-col hidden md:flex sticky top-0 h-screen overflow-y-auto">
+    <>
       <div className="p-6 border-b">
         <Link href="/">
           <Logo />
@@ -100,6 +100,7 @@ const DashboardSidebar = () => {
             <Link
               key={link.href}
               href={link.href}
+              onClick={onLinkClick}
               className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${
                 isActive
                   ? "bg-blue-50 text-blue-600 font-medium"
@@ -140,6 +141,14 @@ const DashboardSidebar = () => {
           </AlertDialogContent>
         </AlertDialog>
       </div>
+    </>
+  );
+};
+
+const DashboardSidebar = () => {
+  return (
+    <div className="w-64 bg-white border-r min-h-screen flex flex-col hidden md:flex sticky top-0 h-screen overflow-y-auto">
+      <SidebarContent />
     </div>
   );
 };

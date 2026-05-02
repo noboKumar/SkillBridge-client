@@ -10,10 +10,10 @@ const Logo = () => {
         height={80}
         width={80}
         loading="eager"
-        className="w-auto h-auto"
+        className="w-10 md:w-auto h-10 md:h-auto"
       />
       <div>
-        <h1 className="font-bold text-2xl text-shadow-2xs">
+        <h1 className="font-bold text-xl text-shadow-2xs">
           {" "}
           <span className="text-sky-700">Skill</span> Bridge
         </h1>
