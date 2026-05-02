@@ -12,6 +12,10 @@
 <center>
 <img src="./public/skillbridge-web-mockup.jpg" alt="skillbridge" width="800px" height="500px" align="center" >
 </center>
+<br>
+
+**Live Preview:** [https://skillbridgex.vercel.app](https://skillbridgex.vercel.app)
+<br>
 
 ## 🌟 Overview
 
