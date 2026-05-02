@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SkillBridge 🎓
+**"Connect with Expert Tutors, Learn Anything"**
 
-## Getting Started
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![Prisma](https://img.shields.io/badge/Prisma-7.0-2D3748?style=for-the-badge&logo=prisma)](https://www.prisma.io/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?style=for-the-badge&logo=postgresql)](https://www.postgresql.org/)
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🌟 Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**SkillBridge** is a premium, full-stack tutoring platform designed to bridge the gap between motivated learners and expert educators. Built with a focus on modern aesthetics and seamless user experience, the platform allows students to book personalized 1-on-1 sessions, tutors to manage their teaching business, and admins to oversee the entire ecosystem.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### **Key Highlights:**
+- **Premium UI/UX:** Built with a custom design system, glassmorphism, and dynamic animations.
+- **Role-Based Access:** Distinct experiences for Students, Tutors, and Admins.
+- **Real-time Stats:** Interactive dashboard with animated counter components.
+- **Responsive Design:** Fully optimized for mobile, tablet, and desktop views.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🚀 Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+### **Frontend**
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Components:** shadcn/ui
+- **Icons:** Lucide React
+- **Animations:** Framer Motion & CSS Transitions
+- **State Management:** React Context & TanStack Query
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### **Backend**
+- **Server:** Node.js + Express
+- **Database:** PostgreSQL
+- **ORM:** Prisma
+- **Authentication:** JSON Web Tokens (JWT) & Bcrypt
+- **Validation:** Zod
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛠️ Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### **For Students 👨‍🎓**
+- **Smart Search:** Filter tutors by subject, rating, and price.
+- **Booking System:** Seamlessly schedule 1-on-1 sessions.
+- **Interactive Dashboard:** Track upcoming and past sessions.
+- **Reviews:** Leave feedback for tutors after completed sessions.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### **For Tutors 👨‍🏫**
+- **Profile Management:** Showcase expertise, bio, and hourly rates.
+- **Availability Manager:** Set and manage teaching slots.
+- **Session Tracking:** View and manage upcoming teaching bookings.
+- **Earnings/Stats:** View ratings and teaching history.
+
+### **For Admins 🛡️**
+- **User Management:** Oversee all platform participants.
+- **Category Management:** Manage subjects and tutoring categories.
+- **Platform Analytics:** View total bookings and user statistics.
+
+---
+
+## ⚙️ Getting Started
+
+### **Prerequisites**
+- Node.js (v18 or higher)
+- PostgreSQL database instance
+- npm, yarn, or pnpm
+
+### **Installation**
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/noboKumar/SkillBridge-frontend.git
+   cd skillbridge-frontend
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment Variables:**
+   Create a `.env.local` file in the root:
+   ```env
+   NEXT_PUBLIC_API_URL=http://localhost:5000/api
+   ```
+
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+### **Backend Setup**
+1. Navigate to the backend directory.
+2. Install dependencies: `npm install`.
+3. Configure `.env` with `DATABASE_URL` and `JWT_SECRET`.
+4. Run Prisma migrations: `npx prisma migrate dev`.
+5. Start backend: `npm run dev`.
+
+---
+
+## 📸 UI Highlights
+
+- **Hero Section:** Aceternity-inspired grid background with premium typography.
+- **Animated Stats:** Real-time counter animations for platform growth.
+- **Glassmorphic Navbar:** Sticky navigation with backdrop-blur effects.
+- **Modern Dashboards:** Role-specific layouts with sidebar navigation.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+Built with ❤️ by [Nobo Kumar](https://github.com/noboKumar)
