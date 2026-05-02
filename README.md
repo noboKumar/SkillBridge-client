@@ -9,6 +9,10 @@
 
 ---
 
+<center>
+<img src="./public/skillbridge-web-mockup.jpg" alt="skillbridge" width="800px" height="500px" align="center" >
+</center>
+
 ## 🌟 Overview
 
 **SkillBridge** is a premium, full-stack tutoring platform designed to bridge the gap between motivated learners and expert educators. Built with a focus on modern aesthetics and seamless user experience, the platform allows students to book personalized 1-on-1 sessions, tutors to manage their teaching business, and admins to oversee the entire ecosystem.
