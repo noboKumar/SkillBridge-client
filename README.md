@@ -10,7 +10,7 @@
 ---
 
 <center>
-<img src="./public/skillbridge-web-mockup.jpg" alt="skillbridge" width="800px" height="500px" align="center" >
+<img src="https://i.ibb.co/7tH09M2Q/060ff462-3976-4cd3-a8c9-d0e590fd0479.jpg" alt="skillbridge" width="800px" height="500px" align="center" >
 </center>
 <br>
 
