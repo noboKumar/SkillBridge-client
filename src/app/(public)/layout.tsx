@@ -9,7 +9,7 @@ export default function PublicLayout({
   return (
     <>
       <NavBar />
-      <div className="min-h-screen py-2">{children}</div>
+      <div className="min-h-screen">{children}</div>
       <Footer />
     </>
   );

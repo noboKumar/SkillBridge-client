@@ -38,7 +38,7 @@ export default async function ExploreCategories() {
   const categories = await getCategories();
 
   return (
-    <section className="py-14 px-6 bg-white">
+    <section className="py-14 px-6 bg-white w-11/12 mx-auto">
       <div>
         <h2 className="text-2xl font-bold text-slate-900 tracking-tight mb-8">
           Explore by Category

@@ -25,7 +25,7 @@ const Hero = () => {
 
       {/* Content Container */}
       <div className="relative z-10 w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-16 lg:gap-8">
-        
+
         {/* Left Content (Text & Search) */}
         <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 tracking-tight mb-6 leading-[1.1]">
@@ -64,11 +64,11 @@ const Hero = () => {
         <div className="flex-1 w-full max-w-lg lg:max-w-none relative mt-10 lg:mt-0">
           {/* Decorative background blob for image */}
           <div className="absolute inset-0 bg-gradient-to-tr from-blue-300 to-sky-100 rounded-[3rem] blur-3xl transform rotate-6 scale-105 opacity-40"></div>
-          
+
           <div className="relative w-full aspect-square sm:aspect-[4/3] lg:aspect-square rounded-[2.5rem] lg:rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white -rotate-2 hover:rotate-0 transition-transform duration-500 bg-slate-200">
-            <img 
-              src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-              alt="Expert tutor helping a student" 
+            <img
+              src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+              alt="Expert tutor helping a student"
               className="w-full h-full object-cover"
             />
             {/* Overlay gradient */}

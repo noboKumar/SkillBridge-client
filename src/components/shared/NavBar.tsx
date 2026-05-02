@@ -34,11 +34,12 @@ const NavBar = () => {
   }
 
   return (
-    <div className="flex items-center justify-between border-b sticky top-0 z-40 backdrop-blur-md bg-background/50">
-      {/* logo */}
-      <Link href="/">
-        <Logo></Logo>
-      </Link>
+    <header className="border-b sticky top-0 z-40 backdrop-blur-md bg-background/50">
+      <div className="flex items-center justify-between w-11/12 mx-auto py-4">
+        {/* logo */}
+        <Link href="/">
+          <Logo></Logo>
+        </Link>
       <div className="flex items-center gap-5">
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-5">
@@ -52,11 +53,10 @@ const NavBar = () => {
               return (
                 <li
                   key={link.href}
-                  className={`font-medium transition-colors ${
-                    isActive
+                  className={`font-medium transition-colors ${isActive
                       ? "text-sky-600 font-bold"
                       : "text-slate-600 hover:text-sky-600"
-                  }`}
+                    }`}
                 >
                   <Link href={link.href}>{link.label}</Link>
                 </li>
@@ -80,7 +80,7 @@ const NavBar = () => {
               <SheetHeader className="text-left mb-6">
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
-              
+
               <div className="flex flex-col gap-6">
                 <ul className="flex flex-col gap-4">
                   {links.map((link) => {
@@ -91,14 +91,13 @@ const NavBar = () => {
 
                     return (
                       <li key={link.href}>
-                        <Link 
+                        <Link
                           href={link.href}
                           onClick={() => setMobileMenuOpen(false)}
-                          className={`block py-2 text-lg font-medium transition-colors border-b border-slate-100 ${
-                            isActive
+                          className={`block py-2 text-lg font-medium transition-colors border-b border-slate-100 ${isActive
                               ? "text-sky-600 font-bold border-sky-100"
                               : "text-slate-600 hover:text-sky-600"
-                          }`}
+                            }`}
                         >
                           {link.label}
                         </Link>
@@ -106,7 +105,7 @@ const NavBar = () => {
                     );
                   })}
                 </ul>
-                
+
                 <div className="pt-4 border-t border-slate-100">
                   <UserAvatar></UserAvatar>
                 </div>
@@ -116,7 +115,8 @@ const NavBar = () => {
         </div>
       </div>
     </div>
-  );
+  </header>
+);
 };
 
 export default NavBar;
